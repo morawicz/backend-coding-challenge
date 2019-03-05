@@ -2,24 +2,26 @@ package com.morawicz.backendcodingchallenge.response;
 
 import java.util.List;
 
+import com.morawicz.backendcodingchallenge.dtos.CitySuggestion;
+
 public class CitySuggestionsResponse {
 
-	private List<CitySuggestionResponse> suggestions;
+	private List<CitySuggestion> suggestions;
 
 	public CitySuggestionsResponse() {
 		super();
 	}
 
-	public CitySuggestionsResponse(List<CitySuggestionResponse> suggestions) {
+	public CitySuggestionsResponse(List<CitySuggestion> suggestions) {
 		super();
 		this.suggestions = suggestions;
 	}
 
-	public List<CitySuggestionResponse> getSuggestions() {
+	public List<CitySuggestion> getSuggestions() {
 		return suggestions;
 	}
 
-	public void setSuggestions(List<CitySuggestionResponse> suggestions) {
+	public void setSuggestions(List<CitySuggestion> suggestions) {
 		this.suggestions = suggestions;
 	}
 
