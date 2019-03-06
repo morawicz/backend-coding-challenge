@@ -8,6 +8,6 @@ import com.morawicz.backendcodingchallenge.entities.CityEntity;
 
 public interface CityRepository extends CrudRepository<CityEntity, Long> {
 
-	List<CityEntity> findByNameContainingIgnoreCase(String name);
+	List<CityEntity> findByNameContaining(String name);
 
 }

@@ -6,6 +6,6 @@ import com.morawicz.backendcodingchallenge.dtos.CitySuggestion;
 
 public interface CitySuggestionService {
 
-	List<CitySuggestion> findSuggestions(String name, Double latitude, Double longitude);
+	List<CitySuggestion> findSuggestions(String queryName, Double targetLatitude, Double targetLongitude);
 
 }
