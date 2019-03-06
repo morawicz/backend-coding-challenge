@@ -32,16 +32,20 @@ public class CitySuggestionController {
 	public CitySuggestionsResponse suggestions(@RequestParam("q") String queryStr,
 			@RequestParam(value = "latitude", required = false) Double latitude,
 			@RequestParam(value = "longitude", required = false) Double longitude) {
-		validateRequest(queryStr);
+		validateRequest(queryStr, latitude, longitude);
 		List<CitySuggestion> suggestions = citySuggestionService.findSuggestions(queryStr, latitude, longitude);
 		return new CitySuggestionsResponse(suggestions);
 	}
 
-	private void validateRequest(String queryStr) {
+	private void validateRequest(String queryStr, Double latitude, Double longitude) {
 		if (!StringUtils.hasText(queryStr)) {
 			throw new InvalidRequestValidationRuntimeException("Query string cannot be empty.");
-		} else if (queryStr.strip().length() < 2) {
+		}
+		if (queryStr.strip().length() < 2) {
 			throw new InvalidRequestValidationRuntimeException("Query string must be minimum 2 characters.");
+		}
+		if ((latitude != null && longitude == null) || (latitude == null && longitude != null)) {
+			throw new InvalidRequestValidationRuntimeException("Latitude and longitude must both be provided at the same time.");
 		}
 	}
 }

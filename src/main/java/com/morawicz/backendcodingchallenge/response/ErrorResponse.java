@@ -9,6 +9,10 @@ public class ErrorResponse {
 	private String httpError;
 	private String message;
 
+	public ErrorResponse() {
+		super();
+	}
+
 	public ErrorResponse(Date timestamp, int httpStatus, String httpError, String message) {
 		super();
 		this.timestamp = timestamp;
