@@ -1,3 +1,40 @@
+#Documentation
+
+## H2 Database
+On startup, the application parses the provided cities_canada-usa.tsv file and inserts specific data into an a cities table:
+- city name
+- state/province abbreviation
+- country ('USA' or 'Canada')
+- latitude
+- longitude
+- population
+
+## Calling the CitySuggestions API
+The application is hosted on Heroku and can be called via:
+`GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163`
+
+## Score Calculation
+The score (ranging from 0.0 to 1.0) is determined by the weighted average of three separate scores:
+- The Levenshtein Distance (the close similarity of the query input to a city name gives a higher score)
+- The distance of the user to a city (proximity of user to a city gives a higher score)
+- The population (a larger population gives a higher score)
+
+When the user's latitude and longitude are provided, the weights are:
+`0.4 * levenshtein_score + 0.3 * distance_score + 0.3 * population_score;`
+
+Without the user's location, the weights are:
+`0.6 * levenshtein_score + 0.4 * population_score` 
+
+## Algorithm credit goes to:
+
+The algorithm to calculate the Levenshtein Distance is taken from:
+`// Reference: https://rosettacode.org/wiki/Levenshtein_distance#Java`
+
+The algorithm to calculate the distance of a user from a city is taken from:
+`https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude`
+
+## 
+
 # Coveo Backend Coding Challenge
 (inspired by https://github.com/busbud/coding-challenge-backend-c)
 
