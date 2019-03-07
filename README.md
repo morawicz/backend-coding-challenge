@@ -1,4 +1,4 @@
-#Documentation
+# Documentation
 
 ## H2 Database
 On startup, the application parses the provided cities_canada-usa.tsv file and inserts specific data into an a cities table:
@@ -11,7 +11,59 @@ On startup, the application parses the provided cities_canada-usa.tsv file and i
 
 ## Calling the CitySuggestions API
 The application is hosted on Heroku and can be called via:
-`GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163`
+
+    GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
+
+Sample Response:
+
+```
+{
+    "suggestions": [
+        {
+            "name": "London, ON, Canada",
+            "latitude": "42.98339",
+            "longitude": "-81.23304",
+            "score": 0.9
+        },
+        {
+            "name": "London, KY, USA",
+            "latitude": "37.12898",
+            "longitude": "-84.08326",
+            "score": 0.4
+        },
+        {
+            "name": "London, OH, USA",
+            "latitude": "39.88645",
+            "longitude": "-83.44825",
+            "score": 0.4
+        },
+        {
+            "name": "Londontowne, MD, USA",
+            "latitude": "38.93345",
+            "longitude": "-76.54941",
+            "score": 0.2
+        },
+        {
+            "name": "New London, CT, USA",
+            "latitude": "41.35565",
+            "longitude": "-72.09952",
+            "score": 0.2
+        },
+        {
+            "name": "Londonderry, NH, USA",
+            "latitude": "42.86509",
+            "longitude": "-71.37395",
+            "score": 0.2
+        },
+        {
+            "name": "New London, WI, USA",
+            "latitude": "44.39276",
+            "longitude": "-88.73983",
+            "score": 0.2
+        }
+    ]
+}
+```
 
 ## Score Calculation
 The score (ranging from 0.0 to 1.0) is determined by the weighted average of three separate scores:
@@ -20,20 +72,23 @@ The score (ranging from 0.0 to 1.0) is determined by the weighted average of thr
 - The population (a larger population gives a higher score)
 
 When the user's latitude and longitude are provided, the weights are:
-`0.4 * levenshtein_score + 0.3 * distance_score + 0.3 * population_score;`
+
+    0.4 * levenshtein_score + 0.3 * distance_score + 0.3 * population_score;
 
 Without the user's location, the weights are:
-`0.6 * levenshtein_score + 0.4 * population_score` 
+
+    0.6 * levenshtein_score + 0.4 * population_score 
 
 ## Algorithm credit goes to:
 
 The algorithm to calculate the Levenshtein Distance is taken from:
-`// Reference: https://rosettacode.org/wiki/Levenshtein_distance#Java`
+    
+    https://rosettacode.org/wiki/Levenshtein_distance#Java
 
 The algorithm to calculate the distance of a user from a city is taken from:
-`https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude`
 
-## 
+    https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude
+
 
 # Coveo Backend Coding Challenge
 (inspired by https://github.com/busbud/coding-challenge-backend-c)
