@@ -12,7 +12,12 @@ On startup, the application parses the provided cities_canada-usa.tsv file and i
 ## Calling the CitySuggestions API
 The application is hosted on Heroku at https://protected-sea-10929.herokuapp.com
 
-API Call:
+API Query Param Restrictions:
+- Query param "q" cannot be empty or less than 2 characters
+- Query params latitude and longitude are optional
+- Query params latitude and longitude if provided must both be present
+
+Sample API Call:
 
     GET https://protected-sea-10929.herokuapp.com/suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
 
