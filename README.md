@@ -10,9 +10,11 @@ On startup, the application parses the provided cities_canada-usa.tsv file and i
 - population
 
 ## Calling the CitySuggestions API
-The application is hosted on Heroku and can be called via:
+The application is hosted on Heroku at https://protected-sea-10929.herokuapp.com
 
-    GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
+API Call:
+
+    GET https://protected-sea-10929.herokuapp.com/suggestions?q=Londo&latitude=43.70011&longitude=-79.4163
 
 Sample Response:
 
